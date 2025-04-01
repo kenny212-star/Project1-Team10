@@ -1,0 +1,39 @@
+name: project1_application
+description: "A new Flutter project."
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  shared_preferences: ^2.2.2 # ✅ Added for local storage
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/breakfast.jpg
+    - assets/brunch.jpg
+    - assets/lunch.jpg
+    - assets/dinner.jpg
+    - assets/snacks.jpg
+    - assets/dessert.jpg
+    - assets/smoothies.jpg
+    - assets/soups.jpg
+    - assets/salads.jpg
+    - assets/grill.jpg
+    - assets/pasta.jpg
+    - assets/vegan.jpg
+    - assets/low carbs.jpg
+    - assets/high protein.jpg
+    - assets/Keto.jpg
