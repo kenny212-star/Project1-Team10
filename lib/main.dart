@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// Global favorites
 List<String> favoriteMeals = [];
 
 // Storage helper
@@ -50,7 +49,7 @@ class MealPlannerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Meal Planner',
+      title: 'Meal Planner App',
       theme: ThemeData(
         primarySwatch: Colors.green,
         scaffoldBackgroundColor: Color(0xFFF9F9F9),
@@ -78,7 +77,7 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Meal Planner Login',
+              Text('Login To Your Meal Plan!',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               SizedBox(height: 24),
               TextField(
@@ -209,7 +208,7 @@ class AppDrawer extends StatelessWidget {
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(builder: (_) => MealPlannerScreen()))),
           ListTile(
-              title: Text('Favourites'),
+              title: Text('Favorites'),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(builder: (_) => FavouritesScreen()))),
         ],
@@ -231,6 +230,30 @@ class MealCategory extends StatelessWidget {
         return 'assets/lunch.jpg';
       case 'dinner':
         return 'assets/dinner.jpg';
+      case 'grill':
+        return 'assets/grill.jpg';
+      case 'dessert':
+        return 'assets/dessert.jpg';
+      case 'high protein':
+        return 'assets/high protein.jpg';
+      case 'keto':
+        return 'assets/keto.jpg';
+      case 'low carb':
+        return 'assets/low carbs.jpg';
+      case 'pasta':
+        return 'assets/pasta.jpg';
+      case 'salad':
+        return 'assets/salads.jpg';
+      case 'smoothie':
+        return 'assets/smoothies.jpg';
+      case 'snack':
+        return 'assets/snacks.jpg';
+      case 'soup':
+        return 'assets/soups.jpg';
+      case 'vegan':
+        return 'assets/vegan.jpg';
+      case 'brunch':
+        return 'assets/brunch.jpg';
       default:
         return null;
     }
@@ -273,7 +296,7 @@ class MealCategory extends StatelessWidget {
   }
 }
 
-// --- Meal Detail with Favourites + Filters ---
+// --- Meal Favourites + Filters ---
 class MealDetailScreen extends StatefulWidget {
   final String mealType;
   MealDetailScreen({required this.mealType});
@@ -301,6 +324,56 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
         'protein': '12g',
         'tags': ['vegetarian']
       },
+      {
+        'name': 'Pancakes',
+        'calories': '350',
+        'protein': '8g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Fruit Smoothie Bowl',
+        'calories': '300',
+        'protein': '6g',
+        'tags': ['vegan']
+      },
+      {
+        'name': 'Greek Yogurt Parfait',
+        'calories': '250',
+        'protein': '10g',
+        'tags': ['vegetarian']
+      },
+    ],
+    'Brunch': [
+      {
+        'name': 'Avocado Toast',
+        'calories': '280',
+        'protein': '7g',
+        'tags': ['vegan']
+      },
+      {
+        'name': 'French Toast',
+        'calories': '370',
+        'protein': '10g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Breakfast Burrito',
+        'calories': '400',
+        'protein': '16g',
+        'tags': []
+      },
+      {
+        'name': 'Smoked Salmon Bagel',
+        'calories': '350',
+        'protein': '22g',
+        'tags': []
+      },
+      {
+        'name': 'Shakshuka',
+        'calories': '320',
+        'protein': '14g',
+        'tags': ['vegetarian', 'gluten-free']
+      },
     ],
     'Lunch': [
       {
@@ -315,6 +388,24 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
         'protein': '10g',
         'tags': ['vegetarian']
       },
+      {
+        'name': 'Quinoa Bowl',
+        'calories': '380',
+        'protein': '14g',
+        'tags': ['vegan', 'gluten-free']
+      },
+      {
+        'name': 'Grilled Cheese Sandwich',
+        'calories': '400',
+        'protein': '12g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Turkey Sandwich',
+        'calories': '320',
+        'protein': '22g',
+        'tags': []
+      },
     ],
     'Dinner': [
       {
@@ -324,10 +415,375 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
         'tags': []
       },
       {
-        'name': 'Pasta',
+        'name': 'Pasta Primavera',
         'calories': '350',
         'protein': '12g',
         'tags': ['vegetarian']
+      },
+      {
+        'name': 'Stuffed Peppers',
+        'calories': '390',
+        'protein': '20g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Beef Stir-Fry',
+        'calories': '430',
+        'protein': '28g',
+        'tags': []
+      },
+      {
+        'name': 'Grilled Chicken & Veggies',
+        'calories': '420',
+        'protein': '35g',
+        'tags': ['gluten-free']
+      },
+    ],
+    'Snack': [
+      {
+        'name': 'Protein Bar',
+        'calories': '210',
+        'protein': '20g',
+        'tags': ['gluten-free']
+      },
+      {
+        'name': 'Apple Slices & Peanut Butter',
+        'calories': '200',
+        'protein': '6g',
+        'tags': ['vegan']
+      },
+      {
+        'name': 'Trail Mix',
+        'calories': '250',
+        'protein': '8g',
+        'tags': ['vegan', 'gluten-free']
+      },
+      {
+        'name': 'Cheese & Crackers',
+        'calories': '250',
+        'protein': '10g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Yogurt Cup',
+        'calories': '180',
+        'protein': '9g',
+        'tags': ['vegetarian']
+      },
+    ],
+    'Dessert': [
+      {
+        'name': 'Chocolate Chip Cookies',
+        'calories': '300',
+        'protein': '3g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Fruit Salad',
+        'calories': '150',
+        'protein': '2g',
+        'tags': ['vegan', 'gluten-free']
+      },
+      {
+        'name': 'Cheesecake',
+        'calories': '400',
+        'protein': '7g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Brownies',
+        'calories': '350',
+        'protein': '5g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Chia Pudding',
+        'calories': '180',
+        'protein': '6g',
+        'tags': ['vegan', 'gluten-free']
+      },
+    ],
+    'Smoothie': [
+      {
+        'name': 'Berry Blast',
+        'calories': '180',
+        'protein': '3g',
+        'tags': ['vegan']
+      },
+      {
+        'name': 'Peanut Butter Banana',
+        'calories': '220',
+        'protein': '7g',
+        'tags': ['vegan']
+      },
+      {
+        'name': 'Green Detox',
+        'calories': '160',
+        'protein': '4g',
+        'tags': ['vegan', 'gluten-free']
+      },
+      {
+        'name': 'Mango Lassi',
+        'calories': '250',
+        'protein': '5g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Protein Power Shake',
+        'calories': '300',
+        'protein': '20g',
+        'tags': ['gluten-free']
+      },
+    ],
+    'Salad': [
+      {
+        'name': 'Greek Salad',
+        'calories': '300',
+        'protein': '8g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Lentil Salad',
+        'calories': '280',
+        'protein': '12g',
+        'tags': ['vegan']
+      },
+      {
+        'name': 'Tuna Salad',
+        'calories': '310',
+        'protein': '25g',
+        'tags': ['gluten-free']
+      },
+      {
+        'name': 'Caprese Salad',
+        'calories': '290',
+        'protein': '9g',
+        'tags': ['vegetarian', 'gluten-free']
+      },
+      {
+        'name': 'Caesar Salad',
+        'calories': '350',
+        'protein': '10g',
+        'tags': ['vegetarian']
+      },
+    ],
+    'Soup': [
+      {
+        'name': 'Tomato Soup',
+        'calories': '150',
+        'protein': '3g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Chicken Noodle Soup',
+        'calories': '220',
+        'protein': '15g',
+        'tags': []
+      },
+      {
+        'name': 'Minestrone',
+        'calories': '180',
+        'protein': '6g',
+        'tags': ['vegan']
+      },
+      {
+        'name': 'Broccoli Cheddar',
+        'calories': '250',
+        'protein': '10g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Lentil Soup',
+        'calories': '230',
+        'protein': '12g',
+        'tags': ['vegan', 'gluten-free']
+      },
+    ],
+    'Grill': [
+      {
+        'name': 'Grilled Chicken',
+        'calories': '330',
+        'protein': '35g',
+        'tags': ['gluten-free']
+      },
+      {'name': 'BBQ Ribs', 'calories': '500', 'protein': '28g', 'tags': []},
+      {
+        'name': 'Grilled Veggie Skewers',
+        'calories': '200',
+        'protein': '6g',
+        'tags': ['vegan']
+      },
+      {
+        'name': 'Grilled Shrimp',
+        'calories': '240',
+        'protein': '22g',
+        'tags': ['gluten-free']
+      },
+      {
+        'name': 'Turkey Burger',
+        'calories': '350',
+        'protein': '28g',
+        'tags': []
+      },
+    ],
+    'Pasta': [
+      {
+        'name': 'Spaghetti Bolognese',
+        'calories': '450',
+        'protein': '22g',
+        'tags': []
+      },
+      {
+        'name': 'Mac & Cheese',
+        'calories': '400',
+        'protein': '14g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Pesto Pasta',
+        'calories': '420',
+        'protein': '12g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Gluten-Free Penne',
+        'calories': '380',
+        'protein': '11g',
+        'tags': ['vegetarian', 'gluten-free']
+      },
+      {
+        'name': 'Creamy Alfredo',
+        'calories': '460',
+        'protein': '15g',
+        'tags': ['vegetarian']
+      },
+    ],
+    'Vegan': [
+      {
+        'name': 'Tofu Stir-Fry',
+        'calories': '320',
+        'protein': '18g',
+        'tags': ['vegan']
+      },
+      {
+        'name': 'Lentil Curry',
+        'calories': '340',
+        'protein': '16g',
+        'tags': ['vegan', 'gluten-free']
+      },
+      {
+        'name': 'Vegan Chili',
+        'calories': '300',
+        'protein': '14g',
+        'tags': ['vegan', 'gluten-free']
+      },
+      {
+        'name': 'Black Bean Tacos',
+        'calories': '280',
+        'protein': '12g',
+        'tags': ['vegan']
+      },
+      {
+        'name': 'Vegan Burger',
+        'calories': '350',
+        'protein': '20g',
+        'tags': ['vegan']
+      },
+    ],
+    'Low Carb': [
+      {
+        'name': 'Zucchini Noodles',
+        'calories': '230',
+        'protein': '6g',
+        'tags': ['vegetarian', 'gluten-free']
+      },
+      {
+        'name': 'Cauliflower Fried Rice',
+        'calories': '240',
+        'protein': '9g',
+        'tags': ['vegan']
+      },
+      {
+        'name': 'Egg Muffins',
+        'calories': '200',
+        'protein': '12g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Tuna Lettuce Wraps',
+        'calories': '250',
+        'protein': '20g',
+        'tags': ['gluten-free']
+      },
+      {
+        'name': 'Grilled Salmon & Asparagus',
+        'calories': '350',
+        'protein': '28g',
+        'tags': ['gluten-free']
+      },
+    ],
+    'High Protein': [
+      {
+        'name': 'Grilled Chicken Breast',
+        'calories': '330',
+        'protein': '35g',
+        'tags': ['gluten-free']
+      },
+      {
+        'name': 'Beef & Broccoli',
+        'calories': '400',
+        'protein': '30g',
+        'tags': []
+      },
+      {
+        'name': 'Protein Smoothie',
+        'calories': '280',
+        'protein': '25g',
+        'tags': ['gluten-free']
+      },
+      {
+        'name': 'Cottage Cheese & Berries',
+        'calories': '180',
+        'protein': '15g',
+        'tags': ['vegetarian']
+      },
+      {
+        'name': 'Hard Boiled Eggs',
+        'calories': '140',
+        'protein': '12g',
+        'tags': ['vegetarian', 'gluten-free']
+      },
+    ],
+    'Keto': [
+      {
+        'name': 'Keto Chicken Alfredo',
+        'calories': '420',
+        'protein': '30g',
+        'tags': ['gluten-free']
+      },
+      {
+        'name': 'Stuffed Avocados',
+        'calories': '300',
+        'protein': '15g',
+        'tags': ['keto', 'gluten-free']
+      },
+      {
+        'name': 'Zucchini Lasagna',
+        'calories': '360',
+        'protein': '22g',
+        'tags': ['gluten-free']
+      },
+      {
+        'name': 'Bacon & Eggs',
+        'calories': '350',
+        'protein': '18g',
+        'tags': ['gluten-free']
+      },
+      {
+        'name': 'Keto Salad Bowl',
+        'calories': '380',
+        'protein': '20g',
+        'tags': ['gluten-free']
       },
     ],
   };
@@ -335,11 +791,14 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final allMeals = meals[widget.mealType] ?? [];
+
     final mealList = selectedFilter == 'All'
         ? allMeals
         : allMeals.where((meal) {
-            final tags = meal['tags'] as List<String>;
-            return tags.contains(selectedFilter.toLowerCase());
+            final tags = List<String>.from(meal['tags'] ?? []);
+            return tags
+                .map((tag) => tag.toLowerCase())
+                .contains(selectedFilter.toLowerCase());
           }).toList();
 
     return Scaffold(
@@ -403,7 +862,7 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
   }
 }
 
-// --- Favourites Screen ---
+//Favourites Screen
 class FavouritesScreen extends StatelessWidget {
   final Map<String, Map<String, String>> allMealInfo = {
     'Oatmeal': {'calories': '150', 'protein': '5g'},
@@ -513,7 +972,7 @@ class _MealPlannerScreenState extends State<MealPlannerScreen> {
   }
 }
 
-// --- Grocery List Screen ---
+//Grocery List Screen
 class GroceryListScreen extends StatelessWidget {
   final Map<String, String> selectedMeals;
   GroceryListScreen({required this.selectedMeals});
@@ -521,10 +980,103 @@ class GroceryListScreen extends StatelessWidget {
   final Map<String, List<String>> mealIngredients = {
     'Oatmeal': ['Oats', 'Milk', 'Banana'],
     'Scrambled Eggs': ['Eggs', 'Butter', 'Salt'],
+    'Pancakes': ['Flour', 'Milk', 'Eggs', 'Baking Powder'],
+    'Fruit Smoothie Bowl': [
+      'Mixed Berries',
+      'Banana',
+      'Almond Milk',
+      'Granola'
+    ],
+    'Greek Yogurt Parfait': ['Greek Yogurt', 'Berries', 'Granola'],
+
+    'Avocado Toast': ['Bread', 'Avocado', 'Lemon Juice'],
+    'French Toast': ['Bread', 'Eggs', 'Milk', 'Cinnamon'],
+    'Breakfast Burrito': ['Tortilla', 'Eggs', 'Cheese', 'Bell Peppers'],
+    'Smoked Salmon Bagel': ['Bagel', 'Cream Cheese', 'Smoked Salmon'],
+    'Shakshuka': ['Tomatoes', 'Eggs', 'Bell Peppers', 'Onions'],
+
     'Chicken Salad': ['Chicken', 'Lettuce', 'Tomato'],
     'Veggie Wrap': ['Tortilla', 'Hummus', 'Lettuce', 'Cucumber'],
+    'Grilled Cheese Sandwich': ['Bread', 'Cheddar Cheese', 'Butter'],
+    'Turkey Sandwich': ['Bread', 'Turkey', 'Lettuce', 'Tomato'],
+    'Quinoa Bowl': ['Quinoa', 'Chickpeas', 'Avocado', 'Spinach'],
+
     'Salmon & Rice': ['Salmon', 'Rice', 'Soy Sauce'],
-    'Pasta': ['Pasta', 'Tomato Sauce', 'Cheese'],
+    'Pasta Primavera': ['Pasta', 'Zucchini', 'Bell Peppers', 'Tomato Sauce'],
+    'Grilled Chicken & Veggies': ['Chicken Breast', 'Zucchini', 'Broccoli'],
+    'Stuffed Peppers': ['Bell Peppers', 'Rice', 'Black Beans', 'Cheese'],
+    'Beef Stir-Fry': ['Beef', 'Broccoli', 'Soy Sauce', 'Garlic'],
+
+    'Apple Slices & Peanut Butter': ['Apple', 'Peanut Butter'],
+    'Trail Mix': ['Nuts', 'Raisins', 'Dark Chocolate'],
+    'Yogurt Cup': ['Yogurt'],
+    'Protein Bar': ['Protein Bar'], // store-bought
+    'Cheese & Crackers': ['Cheddar Cheese', 'Crackers'],
+
+    'Chocolate Chip Cookies': ['Flour', 'Butter', 'Sugar', 'Chocolate Chips'],
+    'Fruit Salad': ['Apple', 'Banana', 'Grapes', 'Orange'],
+    'Cheesecake': ['Cream Cheese', 'Sugar', 'Graham Crackers'],
+    'Brownies': ['Cocoa Powder', 'Flour', 'Butter', 'Eggs'],
+    'Chia Pudding': ['Chia Seeds', 'Almond Milk', 'Honey'],
+
+    'Berry Blast': ['Strawberries', 'Blueberries', 'Banana', 'Almond Milk'],
+    'Peanut Butter Banana': ['Banana', 'Peanut Butter', 'Almond Milk'],
+    'Green Detox': ['Spinach', 'Pineapple', 'Cucumber', 'Coconut Water'],
+    'Mango Lassi': ['Mango', 'Yogurt', 'Honey'],
+    'Protein Power Shake': ['Protein Powder', 'Banana', 'Milk'],
+
+    'Caesar Salad': [
+      'Romaine Lettuce',
+      'Croutons',
+      'Parmesan',
+      'Caesar Dressing'
+    ],
+    'Greek Salad': ['Tomatoes', 'Cucumber', 'Feta', 'Olives'],
+    'Lentil Salad': ['Lentils', 'Carrot', 'Cucumber', 'Olive Oil'],
+    'Tuna Salad': ['Tuna', 'Lettuce', 'Mayo', 'Pickles'],
+    'Caprese Salad': ['Tomatoes', 'Mozzarella', 'Basil'],
+
+    'Tomato Soup': ['Tomatoes', 'Onion', 'Garlic'],
+    'Chicken Noodle': ['Chicken', 'Noodles', 'Carrot', 'Celery'],
+    'Minestrone': ['Beans', 'Zucchini', 'Carrots', 'Tomato Broth'],
+    'Broccoli Cheddar': ['Broccoli', 'Cheddar Cheese', 'Milk'],
+    'Lentil Soup': ['Lentils', 'Onion', 'Garlic', 'Cumin'],
+
+    'Grilled Chicken': ['Chicken Breast', 'Paprika', 'Olive Oil'],
+    'BBQ Ribs': ['Pork Ribs', 'BBQ Sauce'],
+    'Grilled Veggie Skewers': ['Zucchini', 'Bell Peppers', 'Onion'],
+    'Grilled Shrimp': ['Shrimp', 'Garlic', 'Olive Oil'],
+    'Turkey Burger': ['Ground Turkey', 'Bun', 'Lettuce', 'Tomato'],
+
+    'Spaghetti Bolognese': ['Ground Beef', 'Spaghetti', 'Tomato Sauce'],
+    'Mac & Cheese': ['Macaroni', 'Cheese', 'Milk'],
+    'Pesto Pasta': ['Pasta', 'Pesto Sauce', 'Parmesan'],
+    'Gluten-Free Penne': ['Gluten-Free Penne', 'Tomato Sauce'],
+    'Creamy Alfredo': ['Fettuccine', 'Cream', 'Parmesan'],
+
+    'Tofu Stir-Fry': ['Tofu', 'Broccoli', 'Soy Sauce'],
+    'Vegan Chili': ['Kidney Beans', 'Tomato', 'Corn'],
+    'Lentil Curry': ['Lentils', 'Coconut Milk', 'Curry Powder'],
+    'Black Bean Tacos': ['Black Beans', 'Tortilla', 'Lettuce'],
+    'Vegan Burger': ['Vegan Patty', 'Bun', 'Lettuce', 'Tomato'],
+
+    'Zucchini Noodles': ['Zucchini', 'Pesto', 'Cherry Tomatoes'],
+    'Egg Muffins': ['Eggs', 'Spinach', 'Cheddar'],
+    'Cauliflower Fried Rice': ['Cauliflower', 'Peas', 'Carrots', 'Soy Sauce'],
+    'Tuna Lettuce Wraps': ['Tuna', 'Lettuce', 'Avocado'],
+    'Grilled Salmon & Asparagus': ['Salmon', 'Asparagus', 'Lemon'],
+
+    'Grilled Chicken Breast': ['Chicken Breast', 'Garlic', 'Paprika'],
+    'Beef & Broccoli': ['Beef Strips', 'Broccoli', 'Soy Sauce'],
+    'Protein Smoothie': ['Protein Powder', 'Banana', 'Milk'],
+    'Cottage Cheese & Berries': ['Cottage Cheese', 'Blueberries'],
+    'Hard Boiled Eggs': ['Eggs'],
+
+    'Bacon & Eggs': ['Bacon', 'Eggs'],
+    'Keto Salad Bowl': ['Spinach', 'Avocado', 'Boiled Eggs', 'Cheese'],
+    'Zucchini Lasagna': ['Zucchini', 'Ricotta', 'Tomato Sauce'],
+    'Keto Chicken Alfredo': ['Chicken', 'Cream', 'Parmesan'],
+    'Stuffed Avocados': ['Avocados', 'Tuna', 'Onion'],
   };
 
   @override
@@ -543,11 +1095,84 @@ class GroceryListScreen extends StatelessWidget {
   }
 }
 
-// --- Nutrition & Suggestions Screens ---
+//Nutrition & Suggestions Screens
 class NutritionScreen extends StatelessWidget {
   final List<Map<String, dynamic>> nutritionData = [
     {'meal': 'Oatmeal', 'calories': 150, 'protein': 5},
+    {'meal': 'Scrambled Eggs', 'calories': 200, 'protein': 12},
+    {'meal': 'Pancakes', 'calories': 350, 'protein': 8},
+    {'meal': 'Fruit Smoothie Bowl', 'calories': 300, 'protein': 6},
+    {'meal': 'Greek Yogurt Parfait', 'calories': 250, 'protein': 15},
+    {'meal': 'Avocado Toast', 'calories': 280, 'protein': 7},
+    {'meal': 'French Toast', 'calories': 370, 'protein': 10},
+    {'meal': 'Breakfast Burrito', 'calories': 400, 'protein': 16},
+    {'meal': 'Smoked Salmon Bagel', 'calories': 420, 'protein': 22},
+    {'meal': 'Shakshuka', 'calories': 320, 'protein': 14},
     {'meal': 'Chicken Salad', 'calories': 300, 'protein': 25},
+    {'meal': 'Veggie Wrap', 'calories': 250, 'protein': 10},
+    {'meal': 'Grilled Cheese Sandwich', 'calories': 400, 'protein': 12},
+    {'meal': 'Turkey Sandwich', 'calories': 350, 'protein': 18},
+    {'meal': 'Quinoa Bowl', 'calories': 380, 'protein': 14},
+    {'meal': 'Salmon & Rice', 'calories': 400, 'protein': 30},
+    {'meal': 'Pasta Primavera', 'calories': 420, 'protein': 13},
+    {'meal': 'Grilled Chicken & Veggies', 'calories': 370, 'protein': 28},
+    {'meal': 'Stuffed Peppers', 'calories': 390, 'protein': 20},
+    {'meal': 'Beef Stir-Fry', 'calories': 450, 'protein': 30},
+    {'meal': 'Apple Slices & Peanut Butter', 'calories': 200, 'protein': 6},
+    {'meal': 'Trail Mix', 'calories': 250, 'protein': 8},
+    {'meal': 'Yogurt Cup', 'calories': 180, 'protein': 9},
+    {'meal': 'Protein Bar', 'calories': 210, 'protein': 20},
+    {'meal': 'Cheese & Crackers', 'calories': 220, 'protein': 7},
+    {'meal': 'Chocolate Chip Cookies', 'calories': 300, 'protein': 3},
+    {'meal': 'Fruit Salad', 'calories': 150, 'protein': 2},
+    {'meal': 'Cheesecake', 'calories': 430, 'protein': 6},
+    {'meal': 'Brownies', 'calories': 350, 'protein': 4},
+    {'meal': 'Chia Pudding', 'calories': 200, 'protein': 5},
+    {'meal': 'Berry Blast', 'calories': 180, 'protein': 3},
+    {'meal': 'Peanut Butter Banana', 'calories': 220, 'protein': 7},
+    {'meal': 'Green Detox', 'calories': 160, 'protein': 2},
+    {'meal': 'Mango Lassi', 'calories': 250, 'protein': 5},
+    {'meal': 'Protein Power Shake', 'calories': 300, 'protein': 20},
+    {'meal': 'Caesar Salad', 'calories': 350, 'protein': 10},
+    {'meal': 'Greek Salad', 'calories': 300, 'protein': 8},
+    {'meal': 'Lentil Salad', 'calories': 280, 'protein': 12},
+    {'meal': 'Tuna Salad', 'calories': 320, 'protein': 25},
+    {'meal': 'Caprese Salad', 'calories': 290, 'protein': 7},
+    {'meal': 'Tomato Soup', 'calories': 150, 'protein': 3},
+    {'meal': 'Chicken Noodle', 'calories': 220, 'protein': 15},
+    {'meal': 'Minestrone', 'calories': 180, 'protein': 6},
+    {'meal': 'Broccoli Cheddar', 'calories': 250, 'protein': 10},
+    {'meal': 'Lentil Soup', 'calories': 230, 'protein': 12},
+    {'meal': 'Grilled Chicken', 'calories': 330, 'protein': 35},
+    {'meal': 'BBQ Ribs', 'calories': 500, 'protein': 28},
+    {'meal': 'Grilled Veggie Skewers', 'calories': 200, 'protein': 5},
+    {'meal': 'Grilled Shrimp', 'calories': 220, 'protein': 24},
+    {'meal': 'Turkey Burger', 'calories': 350, 'protein': 26},
+    {'meal': 'Spaghetti Bolognese', 'calories': 450, 'protein': 22},
+    {'meal': 'Mac & Cheese', 'calories': 400, 'protein': 14},
+    {'meal': 'Pesto Pasta', 'calories': 420, 'protein': 12},
+    {'meal': 'Gluten-Free Penne', 'calories': 380, 'protein': 11},
+    {'meal': 'Creamy Alfredo', 'calories': 460, 'protein': 15},
+    {'meal': 'Tofu Stir-Fry', 'calories': 320, 'protein': 18},
+    {'meal': 'Vegan Chili', 'calories': 300, 'protein': 14},
+    {'meal': 'Lentil Curry', 'calories': 340, 'protein': 16},
+    {'meal': 'Black Bean Tacos', 'calories': 280, 'protein': 12},
+    {'meal': 'Vegan Burger', 'calories': 350, 'protein': 20},
+    {'meal': 'Zucchini Noodles', 'calories': 230, 'protein': 6},
+    {'meal': 'Egg Muffins', 'calories': 200, 'protein': 14},
+    {'meal': 'Cauliflower Fried Rice', 'calories': 240, 'protein': 9},
+    {'meal': 'Tuna Lettuce Wraps', 'calories': 220, 'protein': 22},
+    {'meal': 'Grilled Salmon & Asparagus', 'calories': 370, 'protein': 30},
+    {'meal': 'Grilled Chicken Breast', 'calories': 330, 'protein': 35},
+    {'meal': 'Beef & Broccoli', 'calories': 400, 'protein': 30},
+    {'meal': 'Protein Smoothie', 'calories': 280, 'protein': 25},
+    {'meal': 'Cottage Cheese & Berries', 'calories': 180, 'protein': 15},
+    {'meal': 'Hard Boiled Eggs', 'calories': 140, 'protein': 12},
+    {'meal': 'Bacon & Eggs', 'calories': 350, 'protein': 18},
+    {'meal': 'Keto Salad Bowl', 'calories': 380, 'protein': 20},
+    {'meal': 'Zucchini Lasagna', 'calories': 360, 'protein': 22},
+    {'meal': 'Keto Chicken Alfredo', 'calories': 420, 'protein': 30},
+    {'meal': 'Stuffed Avocados', 'calories': 300, 'protein': 15},
   ];
 
   @override
@@ -561,7 +1186,8 @@ class NutritionScreen extends StatelessWidget {
           return ListTile(
             title: Text(item['meal']),
             subtitle: Text(
-                'Calories: ${item['calories']} | Protein: ${item['protein']}g'),
+              'Calories: ${item['calories']} | Protein: ${item['protein']}g',
+            ),
           );
         },
       ),
@@ -612,17 +1238,25 @@ class MealSuggestionsScreen extends StatelessWidget {
 
 class MealSearchDelegate extends SearchDelegate {
   final List<String> allMeals;
+
   MealSearchDelegate(this.allMeals);
 
   @override
   List<Widget> buildActions(BuildContext context) {
-    return [IconButton(icon: Icon(Icons.clear), onPressed: () => query = '')];
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () => query = '',
+      ),
+    ];
   }
 
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-        icon: Icon(Icons.arrow_back), onPressed: () => close(context, null));
+      icon: Icon(Icons.arrow_back),
+      onPressed: () => close(context, null),
+    );
   }
 
   @override
@@ -630,8 +1264,23 @@ class MealSearchDelegate extends SearchDelegate {
     final results = allMeals
         .where((meal) => meal.toLowerCase().contains(query.toLowerCase()))
         .toList();
+
     return ListView(
-        children: results.map((meal) => ListTile(title: Text(meal))).toList());
+      children: results.map((meal) {
+        return ListTile(
+          title: Text(meal),
+          onTap: () {
+            close(context, null); // Close the search
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => MealDetailScreen(mealType: meal),
+              ),
+            );
+          },
+        );
+      }).toList(),
+    );
   }
 
   @override
@@ -639,9 +1288,18 @@ class MealSearchDelegate extends SearchDelegate {
     final suggestions = allMeals
         .where((meal) => meal.toLowerCase().startsWith(query.toLowerCase()))
         .toList();
+
     return ListView(
-        children:
-            suggestions.map((meal) => ListTile(title: Text(meal))).toList());
+      children: suggestions.map((meal) {
+        return ListTile(
+          title: Text(meal),
+          onTap: () {
+            query = meal;
+            showResults(context); // Show result when tapped from suggestion
+          },
+        );
+      }).toList(),
+    );
   }
 }
 
@@ -721,3 +1379,4 @@ class QuickAccessSearchPage extends StatelessWidget {
     );
   }
 }
+
